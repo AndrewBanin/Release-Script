@@ -19,13 +19,13 @@ pipeline {
             //sshCommand remote: remote, command: "sudo yum install httpd -y", sudo: true
             //sshCommand remote: remote, command: "sudo systemctl start httpd", sudo: true
             //sshCommand remote: remote, command: "sudo systemctl enable httpd", sudo: true
-            sshCommand remote: remote, command: "sudo systemctl stop httpd", sudo: true
-            sshCommand remote: remote, command: "sudo systemctl disable httpd", sudo: true
-            sshCommand remote: remote, command: "sudo yum remove -y htttpd", sudo: true
-            sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
-            sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
-            sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
-            sshCommand remote: remote, command: "sudo usermod -aG docker cloud_user", sudo: true
+            //sshCommand remote: remote, command: "sudo systemctl stop httpd", sudo: true
+            //sshCommand remote: remote, command: "sudo systemctl disable httpd", sudo: true
+            //sshCommand remote: remote, command: "sudo yum remove -y htttpd", sudo: true
+            //sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
+            //sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
+            //sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
+            //sshCommand remote: remote, command: "sudo usermod -aG docker cloud_user", sudo: true
             //sshCommand remote: remote, command: "sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose", sudo: true
             //sshCommand remote: remote, command: "sudo chmod +x /usr/local/bin/docker-compose", sudo: true
             sshCommand remote: remote, command: "sudo docker run -itd --name  -p 80:8080 tomcat tomcat:latest", sudo: true
