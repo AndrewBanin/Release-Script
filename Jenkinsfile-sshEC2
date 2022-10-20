@@ -11,6 +11,7 @@ pipeline {
             remote.allowAnyHosts = true
             remote.user = 'cloud_user'
             remote.password = '2Twolove$'
+            remote.pty = true
             //remote.identityFile = identity
             //sshCommand remote: remote, command: "mkdir -p Remote/Test"
             //sshCommand remote: remote, command: "touch Remote/Test/test1 Remote/Test/test2 Remote/Test/test3 Remote/Test/test4"
