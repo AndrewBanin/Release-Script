@@ -11,14 +11,13 @@ pipeline {
             remote.allowAnyHosts = true
             remote.user = 'cloud_user'
             remote.password = '2Twolove$'
-            remote.sudo = true
             //remote.identityFile = identity
             //sshCommand remote: remote, command: "mkdir -p Remote/Test"
             //sshCommand remote: remote, command: "touch Remote/Test/test1 Remote/Test/test2 Remote/Test/test3 Remote/Test/test4"
             //sshCommand remote: remote, command: "ls -la Remote/Test/"
-            sshCommand remote: remote, command: "sudo yum install httpd -y" 
-            sshCommand remote: remote, command: "sudo systemctl start httpd"
-            sshCommand remote: remote, command: "sudo systemctl enable httpd"
+            sshCommand remote: remote, command: "sudo yum install httpd -y", sudo: true 
+            sshCommand remote: remote, command: "sudo systemctl start httpd", sudo: true
+            sshCommand remote: remote, command: "sudo systemctl enable httpd", sudo: true
           }
         }
       }
