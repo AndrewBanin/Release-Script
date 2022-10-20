@@ -28,7 +28,7 @@ pipeline {
             //sshCommand remote: remote, command: "sudo usermod -aG docker cloud_user", sudo: true
             //sshCommand remote: remote, command: "sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose", sudo: true
             //sshCommand remote: remote, command: "sudo chmod +x /usr/local/bin/docker-compose", sudo: true
-            sshCommand remote: remote, command: "sudo docker run -itd --name  -p 80:8080 tomcat tomcat:latest", sudo: true
+            sshCommand remote: remote, command: "sudo docker run -it --name  -p 80:8080 tomcat tomcat:latest", sudo: true
             sshCommand remote: remote, command: "sudo docker ps -a", sudo: true
           }
         }
