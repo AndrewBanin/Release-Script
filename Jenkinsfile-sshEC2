@@ -15,7 +15,7 @@ pipeline {
             //sshCommand remote: remote, command: "mkdir -p Remote/Test"
             //sshCommand remote: remote, command: "touch Remote/Test/test1 Remote/Test/test2 Remote/Test/test3 Remote/Test/test4"
             //sshCommand remote: remote, command: "ls -la Remote/Test/"
-            sshCommand remote: remote, command: "sudo yum install httpd -y & sudo systemctl start httpd & sudo systemctl enable httpd"
+            sshCommand remote: remote, command: "sudo yum install httpd -y && sudo systemctl start httpd && sudo systemctl enable httpd"
 
           }
         }
