@@ -1,0 +1,22 @@
+pipeline {
+       agent any
+  stages {
+    stage('deploy app and reports') {
+      steps {
+        script {
+          //withCredentials ([sshUserPrivateKey(credentialsId: 'oracle', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'oracle')]) {
+            def remote = [:]
+            remote.name = "test jenkins ssh"
+            remote.host = "34.219.24.60"
+            remote.allowAnyHosts = true
+            remote.user = 'cloud_user'
+            remote.password = '2Twolove$'
+            //remote.identityFile = identity
+            sshCommand remote: remote, command: "mkdir -p Remote/Test"
+            sshCommand remote: remote, command: "touch Remote/Test/test1 Remote/Test/test2 Remote/Test/test3 Remote/Test/test4"
+            sshCommand remote: remote, command: "ls -la Remote/Test/"
+          }
+        }
+      }
+    }
+  }
