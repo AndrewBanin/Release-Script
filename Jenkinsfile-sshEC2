@@ -19,8 +19,8 @@ pipeline {
             //sshCommand remote: remote, command: "sudo yum install httpd -y", sudo: true
             //sshCommand remote: remote, command: "sudo systemctl start httpd", sudo: true
             //sshCommand remote: remote, command: "sudo systemctl enable httpd", sudo: true
-            sshCommand remote: remote, command: "sudo sytemctl stop httpd"
-            sshCommand remote: remote, command: "sudo systemctl disable httpd"
+            //sshCommand remote: remote, command: "sudo sytemctl stop httpd"
+            //sshCommand remote: remote, command: "sudo systemctl disable httpd"
             sshCommand remote: remote, command: "sudo yum remove -y htttpd"
             sshCommand remote: remote, command: "sudo yum install docker -y"
             sshCommand remote: remote, command: "sudo systemctl start docker"
