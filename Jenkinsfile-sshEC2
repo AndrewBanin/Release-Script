@@ -10,7 +10,7 @@ pipeline {
             remote.host = "54.82.239.235"
             remote.allowAnyHosts = true
             remote.user = 'banina'
-            remote.password = '3Threelove$'
+            remote.password = 'Monday10$'
             remote.pty = true
             //remote.identityFile = identity
             sshCommand remote: remote, command: "sudo mkdir Deployment", sudo: true
