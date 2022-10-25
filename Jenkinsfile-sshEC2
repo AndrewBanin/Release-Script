@@ -26,14 +26,14 @@ pipeline {
             sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
             sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
             sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
-            sshCommand remote: remote, command: "sudo usermod -aG docker ec2-user", sudo: true
+            sshCommand remote: remote, command: "sudo usermod -aG docker banina", sudo: true
             //sshCommand remote: remote,command: "sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose", sudo: true
             //sshCommand remote: remote, command: "sudo chmod +x /usr/local/bin/docker-compose", sudo: true
             //sshCommand remote: remote, command: "cd Deployment"
             //sshCommand remote: remote, command: "sudo docker run -itd --name tomcat -p 8080:8080 tomcat:latest", sudo: true
             //sshCommand remote: remote, command: "sudo docker ps -a", sudo: true
-    stage('transfer docker image to ec2') {
-             sshCommand remote: remote, command: 'scp -oIdentityFile=Docker-compose-dir/docker-composepetclinic.yml ec2-user@ec2-54-82-239-235.compute-1.amazonaws.com:home/ec2-user/Deployment'     
+    stage('transfer docker image to ec2 instance') {
+             sshCommand remote: remote, command: 'scp -oIdentityFile=Docker-compose-dir/docker-composepetclinic.yml banina@ec2-54-82-239-235.compute-1.amazonaws.com:home/banina/Deployment'     
           }
         }
       }
