@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+   petclinic:
+     image: banina/spring-petclinic:1.0.0-RC-1
+     ports:
+       - "80:8080"
