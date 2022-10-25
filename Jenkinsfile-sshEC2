@@ -9,8 +9,8 @@ pipeline {
             remote.name = "test jenkins ssh"
             remote.host = "54.82.239.235"
             remote.allowAnyHosts = true
-            remote.user = 'ec2-user'
-            remote.password = 'EC2-Jenkins'
+            remote.user = 'banina'
+            remote.password = '3Threelove$'
             remote.pty = true
             //remote.identityFile = identity
             sshCommand remote: remote, command: "mkdir Deployment", sudo: true
