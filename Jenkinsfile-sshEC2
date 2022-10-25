@@ -13,7 +13,7 @@ pipeline {
             remote.password = 'EC2-Jenkins'
             remote.pty = true
             //remote.identityFile = identity
-            sshCommand remote: remote, command: "mkdir -p Deployment"
+            sshCommand remote: remote, command: "mkdir Deployment"
             sshCommand remote: remote, command: "cd Deployment"
             //sshCommand remote: remote, command: "touch Remote/Test/test1 Remote/Test/test2 Remote/Test/test3 Remote/Test/test4"
             //sshCommand remote: remote, command: "ls -la Remote/Test/"
