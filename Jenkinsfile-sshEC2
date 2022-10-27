@@ -1,40 +1,27 @@
 pipeline {
-       agent any
-  stages {
-    stage('deploy app and reports') {
-      steps {
-        script {
-          //withCredentials ([sshUserPrivateKey(credentialsId: 'oracle', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'oracle')]) {
-            def remote = [:]
-            remote.name = "test jenkins ssh"
-            remote.host = "54.82.239.235"
-            remote.allowAnyHosts = true
-            remote.user = 'banina'
-            remote.password = 'Monday10$'
-            remote.pty = true
-            //remote.identityFile = identity
-            //sshCommand remote: remote, command: "mkdir Deployment", sudo: true
-            //sshCommand remote: remote, command: "cd Deployment"
-            //sshCommand remote: remote, command: "touch Remote/Test/test1 Remote/Test/test2 Remote/Test/test3 Remote/Test/test4"
-            //sshCommand remote: remote, command: "ls -la Remote/Test/"
-            //sshCommand remote: remote, command: "sudo yum install httpd -y", sudo: true
-            //sshCommand remote: remote, command: "sudo systemctl start httpd", sudo: true
-            //sshCommand remote: remote, command: "sudo systemctl enable httpd", sudo: true
-            //sshCommand remote: remote, command: "sudo systemctl stop httpd", sudo: true
-            //sshCommand remote: remote, command: "sudo systemctl disable httpd", sudo: true
-            //sshCommand remote: remote, command: "sudo yum remove -y htttpd", sudo: true
-            sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
-            sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
-            sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
-            sshCommand remote: remote, command: "sudo usermod -aG docker banina", sudo: true
-            //sshCommand remote: remote,command: "sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose", sudo: true
-            //sshCommand remote: remote, command: "sudo chmod +x /usr/local/bin/docker-compose", sudo: true
-            //sshCommand remote: remote, command: "cd Deployment"
-            //sshCommand remote: remote, command: "sudo docker run -itd --name tomcat -p 8080:8080 tomcat:latest", sudo: true
-            //sshCommand remote: remote, command: "sudo docker ps -a", sudo: true
-    stage('transfer docker image to ec2 instance') {
-             sshCommand remote: remote, command: 'scp -oIdentityFile=Docker-compose-dir/docker-composepetclinic.yml banina@ec2-54-82-239-235.compute-1.amazonaws.com:home/banina/Deployment'     
-          }
+    agent any
+    stages {
+        stage('deploy app and reports') {
+            steps {
+               script {
+               //withCredentials ([sshUserPrivateKey(credentialsId: 'oracle', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'oracle')]) {
+               def remote = [:]
+               remote.name = "finishline"
+               remote.host = "35.88.157.54"
+               remote.allowAnyHosts = true
+               remote.user = 'cloud_user'
+               remote.password = '2Twolove$'
+               remote.pty = true
+               //remote.identityFile = identity
+               sshCommand remote: remote, command: "mkdir /home/cloud_user/deployment/"
+               sshPut remote: remote, from: '/Docker-compose-dir/docker-compose.yml', into: '/home/cloud_user/deployment/'
+               sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
+               sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
+               sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
+               sshCommand remote: remote, command: "sudo usermod -aG docker cloud_user", sudo: true
+               sshCommand remote: remote,command: "sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose", sudo: true
+               sshCommand remote: remote, command: "sudo chmod +x /usr/local/bin/docker-compose", sudo: true
+               sshCommand remote: remote, command: "sudo docker-compose up -d", sudo: true
         }
       }
     }
