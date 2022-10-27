@@ -37,7 +37,7 @@ pipeline {
               remote.password = '2Twolove$'
               //remote.identityFile = identity
               sshCommand remote: remote, command: "pwd"
-              sshCommand remote: remote, command: "cd /home/cloud_user/deployment/"
+              sshCommand remote: remote, command: "cd deployment"
               sshCommand remote: remote, command: "ls -la"
               //sshCommand remote: remote, command: "docker-compose up -d"
               }
