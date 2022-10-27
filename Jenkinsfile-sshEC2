@@ -15,7 +15,7 @@ pipeline {
                //remote.identityFile = identity
                sh "pwd" 
                sh "ls -la Docker-compose-dir "
-               sshCommand remote: remote, command: "mkdir /home/cloud_user/deployment/"
+               //sshCommand remote: remote, command: "mkdir /home/cloud_user/deployment/"
                sshPut remote: remote, from: '/Docker-compose-dir/docker-compose.yml', into: '/home/cloud_user/deployment/'
                sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
                sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
