@@ -39,7 +39,7 @@ pipeline {
               sshCommand remote: remote, command: "pwd"
               sshCommand remote: remote, command: "cd deployment"
               sshCommand remote: remote, command: "ls -la"
-              //sshCommand remote: remote, command: "docker-compose up -d"
+              sshCommand remote: remote, command: "docker-compose -f deployment/docker-compose.yml up -d"
               }
             }
         }
