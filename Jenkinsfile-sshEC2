@@ -31,7 +31,6 @@ pipeline {
               remote.allowAnyHosts = true
               remote.user = 'cloud_user'
               remote.password = '2Twolove$'
-              remote.pty = false
               //remote.identityFile = identity
               sshCommand remote: remote, command: "cd deployment"
               sshCommand remote: remote, command: "docker-compose up -d"
