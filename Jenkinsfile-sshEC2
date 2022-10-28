@@ -19,7 +19,7 @@ pipeline {
                remote.name = "finishline"
                remote.host = "4df4e3006f2c.mylabserver.com"
                remote.allowAnyHosts = true
-               remote.user = '${REMOTE_USER}'
+               remote.user = '${REMOTE_USERNAME}'
                remote.password = '${REMOTE_PASSWD}'
                remote.pty = true
                //remote.identityFile = identity
@@ -43,7 +43,7 @@ pipeline {
               remote.name = "finishline"
               remote.host = "4df4e3006f2c.mylabserver.com"
               remote.allowAnyHosts = true
-              remote.user = '${REMOTE_USER}'
+              remote.user = '${REMOTE_USERNAME}'
               remote.password = '${REMOTE_PASSWD}'
               //remote.identityFile = identity
               sshCommand remote: remote, command: "pwd"
