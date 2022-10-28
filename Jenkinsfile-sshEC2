@@ -19,13 +19,13 @@ pipeline {
                remote.name = "finishline"
                remote.host = "4df4e3006f2c.mylabserver.com"
                remote.allowAnyHosts = true
-               remote.user = '${REMOTE_USERNAME}'
-               remote.password = '${REMOTE_PASSWD}'
+               remote.user = "${REMOTE_USERNAME}"
+               remote.password = "${REMOTE_PASSWD}"
                remote.pty = true
                //remote.identityFile = identity
                sh "pwd" 
                sh "ls -la Docker-compose-dir "
-               sh "echo ${REMOTE_USERNAME} "
+               //sh "echo ${REMOTE_USERNAME} "
                sshCommand remote: remote, command: "mkdir /home/cloud_user/deployment-${BUILD_NUMBER}"
                sshPut remote: remote, from: '/var/lib/jenkins/workspace/DevRelease2/Docker-compose-dir/docker-compose.yml', into: '/home/cloud_user/deployment-${BUILD_NUMBER}/'
                sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
@@ -44,8 +44,8 @@ pipeline {
               remote.name = "finishline"
               remote.host = "4df4e3006f2c.mylabserver.com"
               remote.allowAnyHosts = true
-              remote.user = '${REMOTE_USERNAME}'
-              remote.password = '${REMOTE_PASSWD}'
+              remote.user = "${REMOTE_USERNAME}"
+              remote.password = "${REMOTE_PASSWD}"
               //remote.identityFile = identity
               sshCommand remote: remote, command: "pwd"
               sshCommand remote: remote, command: "cd deployment-${BUILD_NUMBER}"
