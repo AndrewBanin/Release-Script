@@ -25,9 +25,7 @@ pipeline {
                //remote.identityFile = identity
                sh "pwd" 
                sh "ls -la Docker-compose-dir "
-               //sh "echo ${REMOTE_USERNAME} "
-               sshCommand remote: remote, command: "mkdir /home/${REMOTE_USERNAME}/deployment-${BUILD_NUMBER}"
-               sshPut remote: remote, from: '/var/lib/jenkins/workspace/DevRelease2/Docker-compose-dir/docker-compose.yml', into: "/home/cloud_user/deployment-${BUILD_NUMBER}/"
+               sshPut remote: remote, from: '/var/lib/jenkins/workspace/DevRelease2/Docker-compose-dir/petclinic', into: "/home/${REMOTE_USERNAME}/"
                sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
                sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
                sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
@@ -47,10 +45,7 @@ pipeline {
               remote.user = "${REMOTE_USERNAME}"
               remote.password = "${REMOTE_PASSWD}"
               //remote.identityFile = identity
-              sshCommand remote: remote, command: "pwd"
-              sshCommand remote: remote, command: "cd deployment-${BUILD_NUMBER}"
-              sshCommand remote: remote, command: "ls -la"
-              sshCommand remote: remote, command: "docker-compose -f deployment-${BUILD_NUMBER}/docker-compose.yml up -d"
+              sshCommand remote: remote, command: "docker-compose -f petclinic/docker-compose.yml up -d"
               }
             }
         }
