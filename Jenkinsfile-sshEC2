@@ -1,5 +1,15 @@
 pipeline {
     agent any
+    parameters {
+	string(name: "REMOTE_USERNAME",
+	       defaultValue: "",
+	       description: "remote server username"
+    )           
+    string(name: "REMOTE_PASSWD",
+	       defaultValue: "",
+	       description: "remote server passwd"
+    )           
+    }
     stages {
         stage('deploy app and reports') {
             steps {
@@ -9,14 +19,14 @@ pipeline {
                remote.name = "finishline"
                remote.host = "4df4e3006f2c.mylabserver.com"
                remote.allowAnyHosts = true
-               remote.user = 'cloud_user'
-               remote.password = '2Twolove$'
+               remote.user = '${REMOTE_USER}'
+               remote.password = '${REMOTE_PASSWD}'
                remote.pty = true
                //remote.identityFile = identity
                sh "pwd" 
                sh "ls -la Docker-compose-dir "
-               //sshCommand remote: remote, command: "mkdir /home/cloud_user/deployment/"
-               sshPut remote: remote, from: '/var/lib/jenkins/workspace/DevRelease2/Docker-compose-dir/docker-compose.yml', into: '/home/cloud_user/deployment/'
+               sshCommand remote: remote, command: "mkdir /home/cloud_user/deployment-${BUILD_NUMBER}"
+               sshPut remote: remote, from: '/var/lib/jenkins/workspace/DevRelease2/Docker-compose-dir/docker-compose.yml', into: '/home/cloud_user/deployment-${BUILD_NUMBER}/'
                sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
                sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
                sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
@@ -33,13 +43,13 @@ pipeline {
               remote.name = "finishline"
               remote.host = "4df4e3006f2c.mylabserver.com"
               remote.allowAnyHosts = true
-              remote.user = 'cloud_user'
-              remote.password = '2Twolove$'
+              remote.user = '${REMOTE_USER}'
+              remote.password = '${REMOTE_PASSWD}'
               //remote.identityFile = identity
               sshCommand remote: remote, command: "pwd"
-              sshCommand remote: remote, command: "cd deployment"
+              sshCommand remote: remote, command: "cd deployment-${BUILD_NUMBER}"
               sshCommand remote: remote, command: "ls -la"
-              sshCommand remote: remote, command: "docker-compose -f deployment/docker-compose.yml up -d"
+              sshCommand remote: remote, command: "docker-compose -f deployment-${BUILD_NUMBER}/docker-compose.yml up -d"
               }
             }
         }
