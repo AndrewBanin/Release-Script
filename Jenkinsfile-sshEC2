@@ -16,8 +16,8 @@ pipeline {
                script {
                //withCredentials ([sshUserPrivateKey(credentialsId: 'oracle', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'oracle')]) {
                def remote = [:]
-               remote.name = "finishline"
-               remote.host = "4df4e3006f2c.mylabserver.com"
+               remote.name = "Buhnyuy-web_server2"
+               remote.host = "54.221.128.14"
                remote.allowAnyHosts = true
                remote.user = "${REMOTE_USERNAME}"
                remote.password = "${REMOTE_PASSWD}"
@@ -39,8 +39,8 @@ pipeline {
             steps {
               script {
               def remote = [:]
-              remote.name = "finishline"
-              remote.host = "4df4e3006f2c.mylabserver.com"
+              remote.name = "Buhnyuy-web_server2"
+              remote.host = "54.221.128.14"
               remote.allowAnyHosts = true
               remote.user = "${REMOTE_USERNAME}"
               remote.password = "${REMOTE_PASSWD}"
