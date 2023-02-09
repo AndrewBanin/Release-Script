@@ -16,8 +16,8 @@ pipeline {
                script {
                //withCredentials ([sshUserPrivateKey(credentialsId: 'oracle', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'oracle')]) {
                def remote = [:]
-               remote.name = "Buhnyuy-web_server2"
-               remote.host = "54.221.128.14"
+               remote.name = "petclinic-server"
+               remote.host = "4df4e3006f2c.mylabserver.com"
                remote.allowAnyHosts = true
                remote.user = "${REMOTE_USERNAME}"
                remote.password = "${REMOTE_PASSWD}"
@@ -25,7 +25,7 @@ pipeline {
                //remote.identityFile = identity
                sh "pwd" 
                sh "ls -la Docker-compose-dir "
-               sshPut remote: remote, from: '/var/lib/jenkins/workspace/DevRelease2/Docker-compose-dir/petclinic', into: "/home/${REMOTE_USERNAME}/"
+               sshPut remote: remote, from: '/var/lib/jenkins/workspace/Petclinic-deployment/Docker-compose-dir/petclinic', into: "/home/${REMOTE_USERNAME}/"
                sshCommand remote: remote, command: "sudo yum install docker -y", sudo: true
                sshCommand remote: remote, command: "sudo systemctl start docker", sudo: true
                sshCommand remote: remote, command: "sudo systemctl enable docker", sudo: true
@@ -39,8 +39,8 @@ pipeline {
             steps {
               script {
               def remote = [:]
-              remote.name = "Buhnyuy-web_server2"
-              remote.host = "54.221.128.14"
+              remote.name = "petclinic-server"
+              remote.host = "4df4e3006f2c.mylabserver.com"
               remote.allowAnyHosts = true
               remote.user = "${REMOTE_USERNAME}"
               remote.password = "${REMOTE_PASSWD}"
